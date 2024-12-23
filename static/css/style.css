@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('BG.jpg');
+    background-size: cover;      /* L'image couvre toute la page */
+    background-repeat: no-repeat; /* Pas de répétition de l'image */
+    background-position: center; /* Centrer l'image */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.7); /* Couleur noire avec 70% d'opacité */
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+}
+
+
+h1 {
+    text-align: center;
+    color: #fff;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+    color: #fff;
+}
+
+input, select, button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 380px;
+    height: 10px;
+    text-align: center;
+}
+
+.success {
+    margin-top: -4px;
+    color: green;
+    font-weight: bold;
+}
+
+.error {
+    margin-top: -4px;
+    color: red;
+    font-weight: bold;
+}
