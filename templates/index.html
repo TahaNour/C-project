@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>URL Shortener</h1>
+    <form id="urlForm" action="/process_url" method="POST">
+        <label for="option">Action:</label>
+        <select name="option" id="option" required>
+            <option value="encode">Encode</option>
+            <option value="decode">Decode</option>
+        </select>
+
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="result-box">
+        {% if "correspond" in result %}
+        <p class="success">{{ result }}</p>
+        {% else %}
+        <p class="error">{{ result }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    document.getElementById("urlForm").addEventListener("submit", function (event) {
+            // Prevent default submission to validate the data
+            event.preventDefault();
+
+            // Get the selected values
+            const option = document.getElementById("option").value;
+            const url = document.getElementById("url").value.trim();
+
+            let valid = true;
+            let message = "";
+
+            // Improved URL validation pattern
+            const urlPattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}|(\d{1,3}\.){3}\d{1,3})(:\d+)?(\/[a-zA-Z0-9-._~:\/?#[\]@!$&'()*+,;=%]*)?$/;
+
+
+            if (!urlPattern.test(url)) {
+                valid = false;
+                message = "L'URL saisie n'est pas valide. Veuillez entrer une URL correcte.";
+            }
+
+            if (!valid) {
+                // Show an error message
+                alert(message);
+            } else {
+                // Submit the form if the data is valid
+                this.submit();
+            }
+        });
+
+</script>
+</body>
+</html>
