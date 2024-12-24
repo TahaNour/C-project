@@ -10,18 +10,16 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up MinGW (Minimalist GNU for Windows) to compile C programs
-      - name: Install MinGW
-        run: |
-          choco install mingw -y
-          echo "C:\Program Files\mingw-w64\mingw64\bin" >> $env:Path
+      # Step 2: Install the GCC compiler
+      - name: Install GCC # Install the GNU Compiler Collection required for building C programs.
+        run: sudo apt-get install -y gcc # Installs GCC using the system's package manager.
 
       # Step 3: Compile main.c
       - name: Compile main.c
