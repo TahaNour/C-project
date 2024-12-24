@@ -1,0 +1,42 @@
+name: Encode Program Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up MinGW (Minimalist GNU for Windows) to compile C programs
+      - name: Install MinGW
+        run: |
+          choco install mingw -y
+          echo "C:\Program Files\mingw-w64\mingw64\bin" >> $env:Path
+
+      # Step 3: Compile main.c
+      - name: Compile main.c
+        run: |
+          gcc main.c -o main.exe
+          if ($?) { echo "main.c compiled successfully" } else { exit 1 }
+
+      # Step 4: Compile test.c
+      - name: Compile test.c
+        run: |
+          gcc test.c -o test.exe
+          if ($?) { echo "test.c compiled successfully" } else { exit 1 }
+
+      # Step 5: Run the test executable
+      - name: Run tests
+        run: |
+          ./test.exe
+        shell: cmd
