@@ -27,31 +27,12 @@ jobs:
           gcc main.c -o main.exe -lsqlite3
           if [ $? -eq 0 ]; then echo "main.c compiled successfully"; else exit 1; fi
 
-      # Step 4: Verify main.exe exists
-      - name: Verify main.exe exists
-        run: |
-          if [ -f ./main.exe ]; then echo "main.exe exists"; else echo "main.exe does not exist"; exit 1; fi
-
-      # Step 5: List files in the current directory for debugging
-      - name: List files
-        run: ls -la
-
-      # Step 6: Compile test.c
+      # Step 4: Compile test.c
       - name: Compile test.c
         run: |
           gcc test.c -o test.exe -lsqlite3
           if [ $? -eq 0 ]; then echo "test.c compiled successfully"; else exit 1; fi
 
-      # Step 7: Run the main executable to set up the database
-      - name: Setup Database
-        run: ./main.exe
-
-      # Step 8: Print database contents for debugging
-      - name: Print database contents
-        run: |
-          sqlite3 test.db "SELECT name FROM sqlite_master WHERE type='table';"
-          sqlite3 test.db "PRAGMA table_info(urls);"
-
-      # Step 9: Run the test executable
+      # Step 5: Run the test executable
       - name: Run tests
         run: ./test.exe
