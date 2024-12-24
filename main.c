@@ -18,7 +18,6 @@ unsigned long long f_hashage(char *input) {
     return hash;
 }
 
-
 // Conversion en Base62
 void To_Base62(unsigned long long hash, char *output) {
     const char alphabets[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
