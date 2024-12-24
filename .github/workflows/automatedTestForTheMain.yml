@@ -1,4 +1,4 @@
-name: Encode Program Tests
+name: Build and Test
 
 on:
   push:
@@ -17,24 +17,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Install the GCC compiler
-      - name: Install GCC # Install the GNU Compiler Collection required for building C programs.
-        run: sudo apt-get install -y gcc # Installs GCC using the system's package manager.
+      # Step 2: Install dependencies
+      - name: Install GCC and SQLite
+        run: sudo apt-get install -y gcc sqlite3 libsqlite3-dev
 
       # Step 3: Compile main.c
       - name: Compile main.c
         run: |
-          gcc main.c -o main.exe
-          if ($?) { echo "main.c compiled successfully" } else { exit 1 }
+          gcc main.c -o main.exe -lsqlite3
+          if [ $? -eq 0 ]; then echo "main.c compiled successfully"; else exit 1; fi
 
       # Step 4: Compile test.c
       - name: Compile test.c
         run: |
-          gcc test.c -o test.exe
-          if ($?) { echo "test.c compiled successfully" } else { exit 1 }
+          gcc test.c -o test.exe -lsqlite3
+          if [ $? -eq 0 ]; then echo "test.c compiled successfully"; else exit 1; fi
 
       # Step 5: Run the test executable
       - name: Run tests
-        run: |
-          ./test.exe
-        shell: cmd
+        run: ./test.exe
