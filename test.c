@@ -69,7 +69,7 @@ int run_test(const char *dataset_path, const char *program_path) {
 
 int main() {
     const char *dataset_path = "verified_encode.txt";
-    const char *program_path = ".\\main.exe";  // Updated path for Windows
+    const char *program_path = "./main.exe";  // Updated path for Unix-based systems
 
     printf("Running tests...\n");
 
