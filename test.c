@@ -5,7 +5,7 @@
 #define MAX_LINE 512
 #define MAX_OUTPUT 512
 
-void run_test(const char *dataset_path, const char *program_path) {
+int run_test(const char *dataset_path, const char *program_path) {
     FILE *file = fopen(dataset_path, "r");
     if (!file) {
         perror("Unable to open dataset file");
@@ -64,6 +64,7 @@ void run_test(const char *dataset_path, const char *program_path) {
     // Summary of results
     printf("\nTotal Tests: %d, Passed: %d, Failed: %d\n",
            total_tests, passed_tests, total_tests - passed_tests);
+    return total_tests - passed_tests;
 }
 
 int main() {
@@ -71,7 +72,7 @@ int main() {
     const char *program_path = ".\\main.exe";  // Updated path for Windows
 
     printf("Running tests...\n");
-    run_test(dataset_path, program_path);
 
-    return 0;
+    int failed = run_test(dataset_path, program_path);
+    return (failed == 0) ? 0 : 1;
 }
