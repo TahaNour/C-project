@@ -1,7 +1,10 @@
 URL Shortener                                                                                                                                                    
-                                                                                                                                                                 I. Introduction This application provides a URL shortening service that includes a web interface for users, a C application for encoding and decoding URLs, and a database to map short and long URLs.
+
+I.  Introduction                                                                                                                                                   This application provides a URL shortening service that includes a web interface for users, a C application for encoding and decoding URLs, and a database to map short and long URLs.
+
 
 Objective: To provide a fast and efficient URL shortening service.
+
 
 II. Features 
 1)  Shortening Long URLs into Short Links The application allows users to convert long, complex URLs into short, user-friendly links. This feature improves readability and facilitates easier sharing across various platforms.
@@ -24,7 +27,7 @@ To run this project, the following tools and software are required:
 4)  Web Browser (e.g., Chrome, Firefox): Necessary for interacting with the web interface and testing the shortened URLs.
 
 V. Installation To set up and run the project locally, follow these steps:
-1)  Clone the repository Clone the project repository to your local machine using the following command: git clone https://github.com/ezzine-montassar/URL_Shortener.git This will create a local copy of the project on your machine.
+1)  Clone the repository Clone the project repository to your local machine using the following command: git clone https://github.com/TahaNour/C-project.git.  This will create a local copy of the project on your machine.
 2)  Navigate to the project directory Change into the project directory: cd URL_Shortener This ensures you're working in the correct folder.
 3)  Install Flask dependencies Install Flask and its dependencies by running: pip install flask
 4)  Run the Flask server Once Flask is installed, start the server by running: python app.py
